@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DateFinder</string>
+    <string name="start_date">Дата начала</string>
+    <string name="day_count">Количество дней</string>
+    <string name="end_date">Дата конца</string>
+    <string name="calc">Посчитать</string>
+    <string name="bad_number_warning">Некорректный формат числа</string>
+</resources>

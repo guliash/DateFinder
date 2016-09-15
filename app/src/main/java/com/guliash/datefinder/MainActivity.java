@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
 
     @Override
     public void onDateChosen(int year, int month, int day) {
-        mChosenDate = new LocalDate(year, month, day);
+        mChosenDate = new LocalDate(year, month + 1, day);
         displayChosenDate();
         tryToCalculateEndDate(false);
     }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
 
 import org.joda.time.LocalDate;
@@ -16,19 +17,37 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     private static final String MONTH = "month";
     private static final String YEAR = "year";
 
-    private int mDay, mMonth, mYear;
+    private int mDay;
+    /**
+     * 0 - 11
+     */
+    private int mMonth;
+    private int mYear;
 
     private Callbacks mCallbacks;
 
     public interface Callbacks {
+        /**
+         * Notifies date is chosen
+         * @param year
+         * @param month 0 - 11
+         * @param day
+         */
         void onDateChosen(int year, int month, int day);
     }
 
     public static DatePickerFragment newInstance() {
         LocalDate localDate = new LocalDate();
-        return newInstance(localDate.getDayOfMonth(), localDate.getMonthOfYear(), localDate.getYear());
+        return newInstance(localDate.getDayOfMonth(), localDate.getMonthOfYear() - 1, localDate.getYear());
     }
 
+    /**
+     * Constructs new fragment
+     * @param day
+     * @param month 0 - 11
+     * @param year
+     * @return
+     */
     public static DatePickerFragment newInstance(int day, int month, int year) {
         Bundle args = new Bundle();
 
@@ -69,6 +88,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        Log.e("TAG", String.format("%d %d %d", year, month, dayOfMonth));
         mCallbacks.onDateChosen(year, month, dayOfMonth);
     }
 }
